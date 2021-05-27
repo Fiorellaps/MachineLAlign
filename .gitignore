@@ -1,0 +1,13 @@
+\resources
+\webpage/__pycache__
+\src/keras_log
+\src/output_images/0.1
+\src/output_images/0.01
+\src/output_images/0.05
+\tool/clustalw2
+\tool/mafft_7.475-1_amd64.deb
+\tool/muscle3.8.31_i86linux64
+\tool/T-COFFEE_installer_Version_13.45.0.4846264_linux_x64.bin
+\output_text.txt
+\src/input_fasta/BAliBASE
+\src/model/final_models

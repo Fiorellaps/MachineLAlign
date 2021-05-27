@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>MachineLAlign</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <!-- style css -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/responsive.css')}}">
+    <!-- fevicon -->
+    <link rel="icon" href="{{url_for('static', filename='images/favicon.png')}}" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+<!-- body -->
+
+<body class="main-layout">
+    <!-- loader  -->
+    <div class="loader_bg">
+        <div class="loader"><img src="{{url_for('static', filename='images/loading.gif')}}" alt="#" /></div>
+    </div>
+    <!-- end loader -->
+    <!-- top -->
+    <!-- header -->
+    <header class="header-area">
+
+        <div class="container">
+            <div class="row d_flex">
+                <div class="col-sm-3 logo_sm">
+                    <div class="logo">
+                        <a href="{{ url_for('index')}}"></a>
+                    </div>
+                </div>
+                <div class="col-lg-10 offset-lg-1 col-md-12 col-sm-9">
+                    <div class="navbar-area">
+                        <nav class="site-navbar">
+                            <ul>
+                                <li><a class="active" href="{{ url_for('index')}}">Home</a></li>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#align">Align</a></li>
+                                <li><a href="{{ url_for('index')}}" class="logo_midle">MLAlign</a></li>
+                                <li><a>Lisence</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                            </ul>
+                            <button class="nav-toggler">
+                           <span></span>
+                           </button>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="protect" id="align">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlepage text_align_center">
+                        <h2>Multiple Sequence Alignment result</h2>
+                        <p>Result of the alignment of the specific tool obtained with the selected classification model. 
+                            We can compare the aligment performance with different scores provided by <a href="https://github.com/benhid/pyMSA" target="_blank">pyMSA</a></p>
+                        
+                        {% for key in content %}
+                        
+                            <div id="ho_efcet" class="reader resultado">
+                                {% with model=content[key] %}
+                                <h3> Model: {{ key }}; tool: {{model['tool'] }}</h3>
+                                <iframe class="alignment_iframe" src= "{{url_for('static', filename= model['content'] )}}"></iframe>
+                                <button class ="button button1 download">
+                                <a href="{{url_for('static', filename= model['out_file'])}}" download="file.txt">Download alignment</a></button>
+                                {% endwith %}
+                            </div>
+                        
+                        {% endfor %}
+                       
+                        <br><br>
+                        <a  href="{{ url_for('index')}}">
+                        <input type="submit" class="button button1" value="Align again">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- update -->
+    <!--  footer -->
+    <footer>
+        <div class="footer" id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="hedingh3  text_align_left">
+                            <h3>Contact Us</h3>
+                            <ul class="top_infomation">
+                                <li><i class="fa fa-map-marker" aria-hidden="true"></i> Universidad de Málaga
+                                </li>
+                                <li><i class="fa fa-phone" aria-hidden="true"></i> Github : MachinLAlign
+                                </li>
+                                <li><i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <a href="mailto:fiorellapiriz@uma.es">Email : fiorellapiriz@uma.es</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="hedingh3  text_align_left">
+                            <h3>Contact Us</h3>
+                            <ul class="top_infomation">
+                                <li><i class="fa fa-map-marker" aria-hidden="true"></i> Trabajo
+                                </li>
+                                <li><i class="fa fa-phone" aria-hidden="true"></i> .....
+                                </li>
+                                <li><i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <a href="mailto:fiorellapiriz@uma.es">-----</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <p>© 2020 All Rights Reserved. Design by <a href="https://html.design/"> Free html Templates</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end footer -->
+    <!-- Javascript files-->
+    <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+    <script src="{{url_for('static', filename='js/owl.carousel.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/custom.js')}}"></script>
+    <script src="{{url_for('static', filename='js/app.js')}}"></script>
+</body>
+
+</html>

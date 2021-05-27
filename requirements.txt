@@ -1,0 +1,9 @@
+tensorflow
+joblib
+numpy
+pandas
+keras
+seaborn
+joblib
+flask
+pymsa
