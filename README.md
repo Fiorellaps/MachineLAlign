@@ -70,7 +70,7 @@ $ python3 test_models.py
 Final models will be saved at `/src/model`
 
 # Align Seqences
-To compute alignment it is necesary to have tools installed and models saved (models can be also downdloaded [here]()). Go to `/src` and type:
+To compute alignment it is necesary to have tools installed and models saved (models can be also downdloaded [here](https://drive.google.com/drive/folders/10U3TkyHVMklWtd58UiN8gukJdVRNlbBf?usp=sharing)). Go to `/src` and type:
 
 
 `
