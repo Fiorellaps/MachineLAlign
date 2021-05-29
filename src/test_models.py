@@ -4,8 +4,7 @@ import random
 import itertools
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.datasets import make_classification
-from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, roc_curve, roc_auc_score, auc
 from sklearn.ensemble import RandomForestClassifier,AdaBoostClassifier,GradientBoostingClassifier
@@ -63,11 +62,10 @@ def evaluate_model(model, X_train, X_test, y_train, y_test):
     plot_confusion_matrix (confusion_matrix_model,classes, model_name)
     #plot_roc_curve(model, model_name)
     print(str(model) + ": Accuracy = " + str(accuracy_value))
+    joblib.dump(model, './model/model_' + model_name + '.pkl') 
     return accuracy_value
 
-
 # Compute normalized confusion matrix
-
 def plot_confusion_matrix(confusion_matrix, classes, model_name, title = 'Confusion matrix', cmap = plt.cm.Blues):
     confusion_matrix = confusion_matrix.astype('float') / confusion_matrix.sum(axis=1)[:, np.newaxis]
     print(confusion_matrix) 
@@ -90,6 +88,7 @@ def plot_confusion_matrix(confusion_matrix, classes, model_name, title = 'Confus
     plt.xlabel('Predicted label')
     plt.savefig('./output_images/confusion_matrix_' + model_name + '.png')
 
+# Plot Roc Curve
 def plot_roc_curve(model, model_name):
     Y = df.Class
     Y = preprocessing.label_binarize(Y, classes=[0, 1, 2, 3])
@@ -102,13 +101,11 @@ def plot_roc_curve(model, model_name):
     for i in range(n_classes):
         false_positive_rate[i], true_positive_rate[i], _ = roc_curve(y_test[:, i], y_pred[:, i])
         roc_auc[i] = auc(false_positive_rate[i], true_positive_rate[i])
-
     # Plot of a ROC curve for a specific class
     plt.figure()
     fig, axs = plt.subplots(1, 4, figsize=(15, 6))
     axs = axs.ravel()
     fig.subplots_adjust(hspace = .5, wspace=.01)
-
     for i in range(n_classes):
         axs[i].plot(false_positive_rate[i], true_positive_rate[i], label='ROC curve (area = %0.2f)' % roc_auc[i])
         axs[i].plot([0, 1], [0, 1], 'k--')
@@ -126,13 +123,14 @@ def plot_roc_curve(model, model_name):
 # Create model
 decision_tree_model = DecisionTreeClassifier(criterion='entropy', max_depth=9, min_samples_leaf=3,
                        min_samples_split=8)
-
+# Evaluate model
 accuracy_decision_tree_model = evaluate_model(decision_tree_model, X_train, X_test, y_train, y_test) 
 
 #-------- Random Forest model --------#
 # Create model
 random_forest_model = RandomForestClassifier(criterion='entropy', max_depth=20, min_samples_leaf=5,
                        min_samples_split=12, n_estimators=400, random_state=0)
+# Evaluate model
 accuracy_random_forest_model = evaluate_model(random_forest_model, X_train, X_test, y_train, y_test) 
 
 #-------- Gradient Boosting model --------#
@@ -140,22 +138,23 @@ accuracy_random_forest_model = evaluate_model(random_forest_model, X_train, X_te
 gradient_boosting_model = GradientBoostingClassifier(learning_rate=0.2, max_depth=8, max_features=7,
                            min_samples_leaf=60, min_samples_split=400,
                            n_estimators=300, random_state=10, subsample=0.85)
+# Evaluate model
 accuracy_gradient_boosting_model = evaluate_model(gradient_boosting_model, X_train, X_test, y_train, y_test) 
 
 #-------- AdaBoost model --------#
 # Create model
 adaboost_model = AdaBoostClassifier(learning_rate=0.4, n_estimators=300)
+# Evaluate model
 accuracy_adabost_model = evaluate_model(adaboost_model, X_train, X_test, y_train, y_test) 
-print('OK')
 
 #-------- K-nearest Neighbours model --------#
 # Create model
 knn_model = KNeighborsClassifier(leaf_size=1, p=1)
+# Evaluate model
 accuracy_knn_model = evaluate_model(knn_model, X_train, X_test, y_train, y_test) 
 
-
 #-------- CNN + BiLSTM model --------#
-
+# Create model
 def create_CNN_BiLSTM(optimizer='nadam'):
     embedding_dim = 21
     top_classes = 4
@@ -171,11 +170,10 @@ def create_CNN_BiLSTM(optimizer='nadam'):
     model_CNN_BiLSTM.add(Dense(128, activation='selu'))
     model_CNN_BiLSTM.add(Dense(top_classes, activation='softmax'))
     model_CNN_BiLSTM.compile(loss='sparse_categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
-    #plot_model(model_CNN_BiLSTM, to_file = './output_images/model_CNN_BiLSTM.png', show_shapes = False, show_layer_names = True, rankdir = 'TB', expand_nested = False, dpi = 96)
     return model_CNN_BiLSTM
 
-
 model_CNN_BiLSTM = create_CNN_BiLSTM('rmsprop')
+# Evaluate model
 model_CNN_BiLSTM.fit(X_train, y_train, epochs=5,batch_size=512)
 prediction_CNN_BiLSTM = model_CNN_BiLSTM.predict(X_test)
 prediction_CNN_BiLSTM = np.argmax(prediction_CNN_BiLSTM, axis=1)
@@ -187,8 +185,8 @@ print(str(model_name_BiLSTM) + ": Accuracy = " + str(accuracy_value_CNN_BiLSTM))
 model_CNN_BiLSTM.save("model/model_CNN_BiLSTM.h5")
 
 #-------- CNN model --------#
-
-def create_CNN(optimizer='nadam'):
+# Create model
+def create_CNN(optimizer='rmsprop'):
     embedding_dim = 21
     top_classes = 4
     model_CNN = Sequential()
@@ -203,8 +201,10 @@ def create_CNN(optimizer='nadam'):
     return model_CNN
 
 model_CNN = create_CNN()
+# Evaluate model
 model_CNN.fit(X_train, y_train, epochs = 5, batch_size = 512)
 prediction_CNN = model_CNN.predict(X_test)
+prediction_CNN = np.argmax(prediction_CNN, axis=1)
 accuracy_value_CNN = accuracy_score(y_test, prediction_CNN)
 confusion_matrix_CNN = confusion_matrix(y_test, prediction_CNN)
 model_name_CNN = 'CNN'
