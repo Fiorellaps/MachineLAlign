@@ -10,7 +10,6 @@ from datetime import date
 seqs_sys = 'ARNDCQEGHILKMFPSTWYV-'
 todayDate = str(date.today())
 
-
 def compute_alignment(family_classification, model_name, file_name):
     command_line=''
     print(file_name)
@@ -19,15 +18,12 @@ def compute_alignment(family_classification, model_name, file_name):
         command_line = 'mafft --auto --inputorder --quiet '+ file_name + ' > ' + out_file_name
     elif family_classification == 1:
         out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_muscle'
-        tool_name = 'Muscle'
         command_line = '../tool/muscle3.8.31_i86linux64 -in '+ file_name + ' -fastaout ' + out_file_name + ' -quiet'
     elif family_classification == 2:
         out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_clustalw2'
-        tool_name = 'ClustalW2' 
         command_line = '../tool/clustalw2 -infile=' + file_name + ' -outfile=' + out_file_name + ' -output=FASTA -ALIGN -QUIET -OUTORDER=input'
     elif family_classification == 3:
         out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_tcoffee'
-        tool_name = 'T_coffee'   
         command_line = 't_coffee ' + file_name + ' -output fasta -outfile=' + out_file_name
     os.system(command_line)
     print('DLPAlign Finished!')
@@ -110,7 +106,6 @@ if __name__ == '__main__':
     '''
     EXAMPLE CALL:
     python3 align_sequences.py './input_fasta/BAliBASE/BB11001' 'knn'
-    
     '''
     if len(sys.argv) != 3:
         print("Wrong number of arguments")
