@@ -3,26 +3,22 @@ import pandas as pd
 import random
 import itertools
 import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, roc_curve, roc_auc_score, auc
 from sklearn.ensemble import RandomForestClassifier,AdaBoostClassifier,GradientBoostingClassifier
-from sklearn.datasets import make_moons
 from sklearn import preprocessing
-from keras.preprocessing import text, sequence
+from keras.preprocessing import sequence
 from keras.preprocessing.text import Tokenizer
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import StratifiedShuffleSplit
 import joblib
 from  tensorflow.keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, LSTM, Embedding
-from keras.wrappers.scikit_learn import KerasClassifier
 from  tensorflow.keras.models import Sequential
 
 
 
 ######## Read data ########
-df = pd.read_csv('../resources/input/full_pair_data.csv')
+df = pd.read_csv('../resources/full_pair_data.csv')
 df.reset_index()
 
 classes = [1, 2, 3, 4]
