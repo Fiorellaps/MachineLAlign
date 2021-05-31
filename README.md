@@ -50,7 +50,7 @@ $ pip install -r requirements.txt
 
 
 # Tune models
-In order to apply hyperparametrization tuning with the models got to `/src` and write:
+Firtly, make shure you have downloaded and saved the [input data](https://drive.google.com/file/d/1HzaPY2iEIz_rKM5umXbQzegZ4MZ70qxT/view?usp=sharing) into `/resources`. Then, to apply hyperparametrization tuning with the models got to `/src` and write:
 
 
 `
