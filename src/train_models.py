@@ -13,14 +13,13 @@ from keras.preprocessing.text import Tokenizer
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import StratifiedShuffleSplit
 from  tensorflow.keras.models import Sequential
-from  tensorflow.keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, LSTM, Embedding, Dropout, Bidirectional, GRU
+from  tensorflow.keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, LSTM, Embedding
 from tensorflow.keras.utils import plot_model
 from keras.wrappers.scikit_learn import KerasClassifier
 
 
-#output_text = open ('./output_text.txt',)
 ######## Read data ########
-df = pd.read_csv('../resources/input/full_pair_data.csv')
+df = pd.read_csv('../resources/full_pair_data.csv')
 df.reset_index()
 #df.shape
 #df.head()
