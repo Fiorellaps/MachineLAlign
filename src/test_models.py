@@ -17,14 +17,13 @@ from  tensorflow.keras.models import Sequential
 
 
 
-######## Read data ########
+######## Read data without stratification ########
 df = pd.read_csv('../resources/full_pair_data.csv')
 df.reset_index()
 
 classes = [1, 2, 3, 4]
 n_classes  = 4
-models_names = []
-models_scores = []
+
 random.seed(1024)
 
 ######## Get X and Y ########
@@ -46,19 +45,17 @@ X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3, stratif
 
 ######## Functions ########
 
-# Train and test model
+# Train and test model; save final models and plot confusion matrix; optional: plot roc curve
 def evaluate_model(model, X_train, X_test, y_train, y_test):
     model.fit(X_train, y_train)
     prediction = model.predict(X_test)
     accuracy_value= accuracy_score(y_test, prediction)
     confusion_matrix_model = confusion_matrix(y_test, prediction)
     model_name = str(model.__class__.__name__)
-    models_names.append(model_name)
-    models_scores.append(accuracy_value)
     plot_confusion_matrix (confusion_matrix_model,classes, model_name)
     #plot_roc_curve(model, model_name)
     print(str(model) + ": Accuracy = " + str(accuracy_value))
-    joblib.dump(model, './model/model_' + model_name + '.pkl') 
+    joblib.dump(model, './models/model_' + model_name + '.pkl') 
     return accuracy_value
 
 # Compute normalized confusion matrix
@@ -169,7 +166,7 @@ def create_CNN_BiLSTM(optimizer='nadam'):
     return model_CNN_BiLSTM
 
 model_CNN_BiLSTM = create_CNN_BiLSTM('rmsprop')
-# Evaluate model
+# Evaluate model without using a function beacuse it is necessary to specify argmax on prediction output
 model_CNN_BiLSTM.fit(X_train, y_train, epochs=5,batch_size=512)
 prediction_CNN_BiLSTM = model_CNN_BiLSTM.predict(X_test)
 prediction_CNN_BiLSTM = np.argmax(prediction_CNN_BiLSTM, axis=1)
@@ -178,7 +175,8 @@ model_name_BiLSTM = 'CNN_BiLSTM'
 plot_confusion_matrix (confusion_matrix_CNN_BiLSTM, classes, model_name_BiLSTM)
 accuracy_value_CNN_BiLSTM= accuracy_score(y_test, prediction_CNN_BiLSTM)
 print(str(model_name_BiLSTM) + ": Accuracy = " + str(accuracy_value_CNN_BiLSTM))
-model_CNN_BiLSTM.save("model/model_CNN_BiLSTM.h5")
+# Save model using Keras 
+model_CNN_BiLSTM.save("models/model_CNN_BiLSTM.h5")
 
 #-------- CNN model --------#
 # Create model
@@ -197,7 +195,7 @@ def create_CNN(optimizer='rmsprop'):
     return model_CNN
 
 model_CNN = create_CNN()
-# Evaluate model
+# Evaluate model without using a function beacuse it is necessary to specify argmax on prediction output
 model_CNN.fit(X_train, y_train, epochs = 5, batch_size = 512)
 prediction_CNN = model_CNN.predict(X_test)
 prediction_CNN = np.argmax(prediction_CNN, axis=1)
@@ -205,5 +203,6 @@ accuracy_value_CNN = accuracy_score(y_test, prediction_CNN)
 confusion_matrix_CNN = confusion_matrix(y_test, prediction_CNN)
 model_name_CNN = 'CNN'
 plot_confusion_matrix (confusion_matrix_CNN, classes, model_name_CNN)
+# Save model using Keras
 print(str(model_name_CNN) + ": Accuracy = " + str(accuracy_value_CNN))
-model_CNN.save("model/model_CNN.h5")
+model_CNN.save("models/model_CNN.h5")

@@ -17,13 +17,14 @@ from  tensorflow.keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, LSTM,
 from tensorflow.keras.utils import plot_model
 from keras.wrappers.scikit_learn import KerasClassifier
 
-
-######## Read data ########
+######## Read data applying stratification ########
 df = pd.read_csv('../resources/full_pair_data.csv')
 df.reset_index()
 #df.shape
 #df.head()
 #df.info()
+
+# Plot classes distribution 
 classes = [1, 2, 3, 4]
 models_names = []
 models_scores = []
@@ -32,9 +33,10 @@ stratified_split = StratifiedShuffleSplit(n_splits=2, test_size=0.1, random_stat
 for x, y in stratified_split.split(df, df['Class']):
     stratified_df = df.iloc[y]
 stratified_df = df
+# Barplot
 sns.countplot(stratified_df['Class'])
 plt.savefig("./output_images/class_distribution.png")
-
+# Distplot and boxplot
 plt.figure()
 f = plt.figure(figsize=(20,4))
 f.add_subplot(1,2,1)
@@ -42,7 +44,6 @@ sns.distplot(stratified_df['Class'])
 f.add_subplot(1,2,2)
 sns.boxplot(stratified_df['Class'])
 plt.savefig("./output_images/class_distplot_boxplot.png")
-#output_text.write(str(stratified_df.shape[0]) + " instances")
 print(str(stratified_df.shape[0]) + " instances")
 
 
@@ -64,7 +65,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3, stratif
 
 ######## Functions ########
 
-# Hyperparemeters tuning
+# Hyperparemeters tuning with confusion matrix calculation; returns best model 
 def hiperparametrization_grid_search(model, prameters_grid, X_train , X_test , y_train , y_test ):
     # Apply grid search with 10 CV
     model_grid_search = GridSearchCV(estimator = model, param_grid = prameters_grid, cv = 10, n_jobs = -1)
@@ -87,7 +88,7 @@ def hiperparametrization_grid_search(model, prameters_grid, X_train , X_test , y
     print(model_grid_search.best_params_)
     return best_model
 
-# Compute normalized confusion matrix
+# Compute normalized confusion matrix figure with a given confusion matrix 
 
 def plot_confusion_matrix(confusion_matrix, classes, model_name, title = 'Confusion matrix', cmap = plt.cm.Blues):
     confusion_matrix = confusion_matrix.astype('float') / confusion_matrix.sum(axis=1)[:, np.newaxis]

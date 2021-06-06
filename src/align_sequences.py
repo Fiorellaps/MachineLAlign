@@ -18,10 +18,10 @@ def compute_alignment(family_classification, model_name, file_name):
         command_line = 'mafft --auto --inputorder --quiet '+ file_name + ' > ' + out_file_name
     elif family_classification == 1:
         out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_muscle'
-        command_line = '../tool/muscle3.8.31_i86linux64 -in '+ file_name + ' -fastaout ' + out_file_name + ' -quiet'
+        command_line = '../MSA_tools/muscle3.8.31_i86linux64 -in '+ file_name + ' -fastaout ' + out_file_name + ' -quiet'
     elif family_classification == 2:
         out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_clustalw2'
-        command_line = '../tool/clustalw2 -infile=' + file_name + ' -outfile=' + out_file_name + ' -output=FASTA -ALIGN -QUIET -OUTORDER=input'
+        command_line = '../MSA_tools/clustalw2 -infile=' + file_name + ' -outfile=' + out_file_name + ' -output=FASTA -ALIGN -QUIET -OUTORDER=input'
     elif family_classification == 3:
         out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_tcoffee'
         command_line = 't_coffee ' + file_name + ' -output fasta -outfile=' + out_file_name
@@ -61,19 +61,19 @@ def classifyFamily(seqs, model, model_name, file_name):
 def readModel(model_name):
 
     if(model_name == "adaboost"):
-        model = joblib.load('../src/model/final_models/model_AdaBoostClassifier.pkl')
+        model = joblib.load('../src/models/model_AdaBoostClassifier.pkl')
     elif(model_name == "knn"):
-        model = joblib.load('../src/model/final_models/model_KNeighborsClassifier.pkl')
+        model = joblib.load('../src/models/model_KNeighborsClassifier.pkl')
     elif(model_name == "decisiontree"):
-        model = joblib.load('../src/model/final_models/model_DecisionTreeClassifier.pkl')
+        model = joblib.load('../src/models/model_DecisionTreeClassifier.pkl')
     elif(model_name == "gradientboosting"):
-        model = joblib.load('../src/model/final_models/model_GradientBoostingClassifier.pkl')
+        model = joblib.load('../src/models/model_GradientBoostingClassifier.pkl')
     elif(model_name == "randomforest"):
-        model = joblib.load('../src/model/final_models/model_RandomForestClassifier.pkl')
+        model = joblib.load('../src/models/model_RandomForestClassifier.pkl')
     elif(model_name == "cnnbilstm"):
-        model = load_model('../src/model/final_models/model_CNN_BiLSTM.h5')
+        model = load_model('../src/models/model_CNN_BiLSTM.h5')
     elif(model_name == "cnn"):
-        model = load_model('../src/model/final_models/model_CNN.h5')
+        model = load_model('../src/models/model_CNN.h5')
     return model
 
 def readSequencesFromFile(family_file):

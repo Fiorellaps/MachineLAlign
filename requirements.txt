@@ -4,6 +4,6 @@ numpy
 pandas
 keras
 seaborn
-joblib
 flask
 pymsa
+matplotlib

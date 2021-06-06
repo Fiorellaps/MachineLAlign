@@ -16,7 +16,7 @@ def write_white(f, str_):
 
 
 
-def print_alignment(msa: MSA, cx_point: int = 100, output_file = open('output_file_alignment', 'w')):
+def print_alignment(msa: MSA, cx_point: int = 100, output_file: int = -1):
     sub_sequences = [[]] * msa.number_of_sequences
     for i, sequence in enumerate(msa.sequences):
         sub_sequences[i] = [sequence[i: i + cx_point] for i in range(0, len(sequence), cx_point)]

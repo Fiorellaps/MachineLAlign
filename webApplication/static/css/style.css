@@ -249,6 +249,9 @@ button {
     height: 100%;
 }
 
+.info{
+    width: 30em;
+}
 .loader {
     height: 100%;
     width: 100%;
