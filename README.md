@@ -8,7 +8,7 @@ MachineLalign is an final thesis project developed in Python that include a web 
 
 # Requirements
 
-To be able to compute the sequence alingments, the following tools must be installed and moved to `/tool` folder:
+To be able to compute the sequence alingments, the following tools must be installed and moved to `/MSA_tools` folder:
 
 - [Muscle](https://www.drive5.com/muscle/downloads.htm)
 - [MAFFT](https://mafft.cbrc.jp/alignment/software/)
@@ -67,10 +67,10 @@ $ python3 test_models.py
 `
 
 
-Final models will be saved at `/src/model`
+Final models will be saved at `/src/models`
 
 # Align Seqences
-To compute alignment it is necesary to have tools installed and models saved (models can be also downdloaded [here](https://drive.google.com/drive/folders/10U3TkyHVMklWtd58UiN8gukJdVRNlbBf?usp=sharing)). Go to `/src` and type:
+To compute alignment it is necesary to have tools installed and models saved at `/src/models`(models can be also downdloaded [here](https://drive.google.com/drive/folders/10U3TkyHVMklWtd58UiN8gukJdVRNlbBf?usp=sharing)). Go to `/src` and type:
 
 
 `
