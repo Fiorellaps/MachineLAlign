@@ -113,7 +113,6 @@ def readSequencesFromFile(family_file):
     for i in range(len(sequences) - 1):
         for j in range(i, len(sequences)):
             sequences_pairs.append(sequences[i] + '-' + sequences[j])
-    print(sequences_pairs)
     return sequences_pairs
 
 def alignSequences(input_sequences, input_model):

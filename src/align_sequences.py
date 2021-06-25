@@ -18,7 +18,6 @@ todayDate = str(date.today())
 
 def compute_alignment(family_classification, model_name, file_name):
     command_line=''
-    print(file_name)
     if family_classification == 0:
         out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_tcoffee'
         command_line = 'mafft --auto --inputorder --quiet '+ file_name + ' > ' + out_file_name

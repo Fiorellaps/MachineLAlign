@@ -4,11 +4,11 @@
 
 # Aligning Multiple Sequences with Machine Learning models
 
-MachineLalign is an final thesis project developed in Python that include a web page designed with HTML, CSS and Flask. This study has the goal to prove that DL architectures are an effective approach to MSA, thus, we have created other Machine Learning models, such as Gradient Boosting or Random Forest, to demonstrate that fact. 
+MachineLalign is a final thesis project developed in Python that includes a web page designed with HTML, CSS and Flask. This study has the goal to prove that DL architectures are an effective approach to MSA, thus, we have created other Machine Learning models, such as Gradient Boosting or Random Forest, to demonstrate that fact. 
 
 # Requirements
 
-To be able to compute the sequence alingments, the following tools must be installed and moved to `/MSA_tools` folder:
+To be able to compute the sequence alignments, the following tools must be installed and moved to `/MSA_tools` folder:
 
 - [Muscle](https://www.drive5.com/muscle/downloads.htm)
 - [MAFFT](https://mafft.cbrc.jp/alignment/software/)
@@ -50,7 +50,7 @@ $ pip install -r requirements.txt
 
 
 # Tune models
-Firstly, make shure you have downloaded and saved the [input data](https://drive.google.com/file/d/1HzaPY2iEIz_rKM5umXbQzegZ4MZ70qxT/view?usp=sharing) into `/resources`. Then, to apply hyperparametrization tuning with the models got to `/src` and write:
+Firstly, make sure you have downloaded and saved the [input data](https://drive.google.com/file/d/1HzaPY2iEIz_rKM5umXbQzegZ4MZ70qxT/view?usp=sharing) into `/resources`. Then, to apply hyperparametrization tuning with the models got to `/src` and write:
 
 
 `
@@ -69,8 +69,8 @@ $ python3 test_models.py
 
 Final models will be saved at `/src/models`
 
-# Align Seqences
-To compute alignment it is necesary to have tools installed and models saved at `/src/models`(models can be also downdloaded [here](https://drive.google.com/drive/folders/10U3TkyHVMklWtd58UiN8gukJdVRNlbBf?usp=sharing)). Go to `/src` and type:
+# Align Sequences
+To compute alignment it is necessary to have tools installed and models saved at `/src/models`(models can be also downloaded [here](https://drive.google.com/drive/folders/10U3TkyHVMklWtd58UiN8gukJdVRNlbBf?usp=sharing)). Go to `/src` and type:
 
 
 `
@@ -90,7 +90,7 @@ The output will be saved at `/src/output_aligned'`.
 
 # Run the API Rest
 
-The we application can be run going to `/webpage` and writting:
+The we application can be run going to `/webpage` and writing:
 
 
 `
@@ -106,7 +106,7 @@ Once runned you must go to 'Align' section and it will appear an interface like 
   </kbd>
 </p>
 
-Finally, the output will be showed one ypu introduce the sequence and select one ore more models:
+Finally, the output will be showed one you introduce the sequence and select one or more models:
 <p align="center">
   <kbd>
   <img src="https://github.com/Fiorellaps/MachineLAlign/blob/ae90d7e9c346d3bff915360209684b9a28b616dc/resources/result_interface.PNG" alt="Result interface">
