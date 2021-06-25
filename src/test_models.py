@@ -1,3 +1,9 @@
+"""
+@author fiorellaps
+@since 26/04/21
+Program for testing models
+
+"""
 import numpy as np
 import pandas as pd
 import random

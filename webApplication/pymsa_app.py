@@ -1,6 +1,12 @@
+"""
+@author Antonio Benitez Hidalgo
+@modified fiorellaps
+@since 10/05/21
+pyMSA Program edited to score MSA
+
+"""
 from pickle import STRING
 import sys
-
 from pymsa import MSA, Entropy, PercentageOfNonGaps, PercentageOfTotallyConservedColumns, Star, SumOfPairs
 from pymsa import PAM250, Blosum62, FileMatrix
 from pymsa.util.fasta import read_fasta_file_as_list_of_pairs

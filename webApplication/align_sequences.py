@@ -1,3 +1,9 @@
+"""
+@author fiorellaps
+@since 05/05/21
+Program for align sequences from Web Application
+
+"""
 from tensorflow.keras.preprocessing import sequence
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.models import load_model

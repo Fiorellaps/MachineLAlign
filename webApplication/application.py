@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+"""
+@author fiorellaps
+@since 13/04/21
+Program for creating the app
+
+"""
 
 from flask import Flask, flash, url_for, request, session, redirect
 from flask import render_template

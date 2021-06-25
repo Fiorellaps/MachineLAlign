@@ -249,9 +249,10 @@ button {
     height: 100%;
 }
 
-.info{
+.info {
     width: 30em;
 }
+
 .loader {
     height: 100%;
     width: 100%;
@@ -597,19 +598,21 @@ textarea {
     border: 2px solid #4CAF50;
 }
 
-
 .button1:hover {
     background-color: #4CAF50;
     color: white;
 }
-.send{
-    margin-left: 35em; 
+
+.send {
+    margin-left: 35em;
 }
+
 .download {
     background-color: white;
     color: black;
     border: 2px solid red;
 }
+
 .download:hover {
     background-color: red;
     color: white;
@@ -643,15 +646,16 @@ label {
     height: auto;
 }
 
-.resultado pre{
+.resultado pre {
     text-align: left;
 }
 
-.alineamiento{
+.alineamiento {
     margin-left: 5em;
     margin-top: 1em;
     max-width: 1000px;
 }
+
 #purchaseOrder {
     margin: 0 0 2em 0;
 }
@@ -1074,12 +1078,14 @@ label {
     border: #9d9d9c solid 2px;
     height: 120px;
 }
+
 .alignment_iframe {
     width: 1050px;
     max-height: 600px;
     min-height: 400px;
     margin-top: 1em;
 }
+
 .main_form .send_btn {
     font-size: 15px;
     transition: ease-in all 0.5s;
@@ -1132,7 +1138,6 @@ label {
 }
 
 .cevery_bg {
-    
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
