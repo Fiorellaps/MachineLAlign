@@ -18,25 +18,25 @@ def compute_alignment(family_classification, model_name):
     path_out_file_name = ''
     tool_name = ''
     if family_classification == 0:
-        out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_mafft'
-        path_out_file_name = out_name + out_file_name
-        tool_name = 'Mafft'
-        command_line = 'mafft --auto --inputorder --quiet '+ file_name + ' > ' + path_out_file_name
-    elif family_classification == 1:
-        out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_muscle'
-        path_out_file_name = out_name + out_file_name
-        tool_name = 'Muscle'
-        command_line = '../MSA_tools/muscle3.8.31_i86linux64 -in '+ file_name + ' -fastaout ' + path_out_file_name + ' -quiet'
-    elif family_classification == 2:
-        out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_clustalw2'
-        path_out_file_name = out_name + out_file_name 
-        tool_name = 'ClustalW2' 
-        command_line = '../MSA_tools/clustalw2 -infile=' + file_name + ' -outfile=' + path_out_file_name + ' -output=FASTA -ALIGN -QUIET -OUTORDER=input'
-    elif family_classification == 3:
         out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_tcoffee'
         path_out_file_name = out_name + out_file_name
         tool_name = 'T_coffee'   
         command_line = 't_coffee ' + file_name + ' -output fasta -outfile=' + path_out_file_name
+    elif family_classification == 1:
+        out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_mafft'
+        path_out_file_name = out_name + out_file_name
+        tool_name = 'Mafft'
+        command_line = 'mafft --auto --inputorder --quiet '+ file_name + ' > ' + path_out_file_name
+    elif family_classification == 2:
+        out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_muscle'
+        path_out_file_name = out_name + out_file_name
+        tool_name = 'Muscle'
+        command_line = '../MSA_tools/muscle3.8.31_i86linux64 -in '+ file_name + ' -fastaout ' + path_out_file_name + ' -quiet'
+    elif family_classification == 3:
+        out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_clustalw2'
+        path_out_file_name = out_name + out_file_name 
+        tool_name = 'ClustalW2' 
+        command_line = '../MSA_tools/clustalw2 -infile=' + file_name + ' -outfile=' + path_out_file_name + ' -output=FASTA -ALIGN -QUIET -OUTORDER=input'
     os.system(command_line)
     os.system('python3 pymsa_app.py ' + path_out_file_name + ' ' + path_out_file_name + '.html')
     print('DLPAlign Finished!')

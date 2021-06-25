@@ -14,16 +14,16 @@ def compute_alignment(family_classification, model_name, file_name):
     command_line=''
     print(file_name)
     if family_classification == 0:
-        out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_mafft'
+        out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_tcoffee'
         command_line = 'mafft --auto --inputorder --quiet '+ file_name + ' > ' + out_file_name
     elif family_classification == 1:
-        out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_muscle'
+        out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_mafft'
         command_line = '../MSA_tools/muscle3.8.31_i86linux64 -in '+ file_name + ' -fastaout ' + out_file_name + ' -quiet'
     elif family_classification == 2:
-        out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_clustalw2'
+        out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_muscle'
         command_line = '../MSA_tools/clustalw2 -infile=' + file_name + ' -outfile=' + out_file_name + ' -output=FASTA -ALIGN -QUIET -OUTORDER=input'
     elif family_classification == 3:
-        out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_tcoffee'
+        out_file_name = 'output_aligned/' + todayDate + '_' + model_name + '_clustalw2'
         command_line = 't_coffee ' + file_name + ' -output fasta -outfile=' + out_file_name
     os.system(command_line)
     print('DLPAlign Finished!')
