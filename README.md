@@ -6,6 +6,8 @@
 
 MachineLalign is a final thesis project developed in Python that includes a web page designed with HTML, CSS and Flask. This study has the goal to prove that DL architectures are an effective approach to MSA, thus, we have created other Machine Learning models, such as Gradient Boosting or Random Forest, to demonstrate that fact. 
 
+Publication available in [Deep Learning and its applications in Multiple Sequence Alignment](https://riuma.uma.es/xmlui/handle/10630/23382)
+
 # Requirements
 
 To be able to compute the sequence alignments, the following tools must be installed and moved to `/MSA_tools` folder:
